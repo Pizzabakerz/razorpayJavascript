@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <!-- css bootstrap-->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <title>Home</title>
+</head>
+
+<body>
+    <h1 style="margin-left: 50px;margin-top: 50px">course</h1>
+    <div style="margin-top: 50px">
+            <div class="container">
+                    <div class="row">
+                        <div class="col-sm">
+                            <!-- Data Science -->
+                            <div class="card" style="width: 18rem;">
+                                <img src="https://www.southwales.ac.uk/media/images/Thinks.8dd35e85.fill-1366x700.format-jpeg.jpegquality-80.jpg"
+                                    class="card-img-top" alt="data science">
+                                <div class="card-body">
+                                    <h5 class="card-title">Data Science <br> &#8377; 25000</h5>
+                                    <p class="card-text">Data scientists draw the digital information they are studying from a
+                                        growing
+                                        list of channels and sources. By sorting through
+                                        these large data sets, data scientists can identify
+                                        patterns to solve problems</p>
+                                    <button href="#" class="js-pay-bundle" data-itemid="Data Science"
+                                        data-amount="2500000" data-processorid="jackson" data-qty="1">Buy course</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm">
+                            <!-- Java -->
+                            <div class="card" style="width: 18rem;">
+                                <img src="https://images.idgesg.net/images/article/2019/03/javaworld_jvm_jdk_jre_explainer_java_development_kit_write_3x2_2400x1600_by_idg_oracle_vasabii_gettyimages-100790551-large.jpg"
+                                    class="card-img-top" alt="data science">
+                                <div class="card-body">
+                                    <h5 class="card-title">Java <br> &#8377; 20000</h5>
+                                    <p class="card-text">Java is a general-purpose programming language that is class-based, 
+                                        object-oriented (not a pure oo, as it contains primitive 
+                                        types)
+                                        
+                                    </p>
+                                    <button href="#" class="js-pay-bundle" data-itemid="Java Fullstack"
+                                        data-amount="2000000" data-processorid="jackson" data-qty="1">Buy course</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm">
+                            <!-- Aws -->
+                            <div class="card" style="width: 18rem;">
+                                <img src="https://www.xenonstack.com/images/insights/xenonstack-devops-on-aws.png"
+                                    class="card-img-top" alt="data science">
+                                <div class="card-body">
+                                    <h5 class="card-title">AWS and Devops <br> &#8377; 23000</h5>
+                                    <p class="card-text">Amazon Web Services (AWS) is a subsidiary of Amazon that 
+                                        provides on-demand cloud computing platforms to individuals, companies, 
+                                        and governments
+                                    </p>
+                                    <button href="#" class="js-pay-bundle" data-itemid="AWS Devops"
+                                        data-amount="2300000" data-processorid="jackson" data-qty="1">Buy course</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+    </div>
+
+
+
+    <!-- bootstrap script-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+        crossorigin="anonymous"></script>
+
+    <!-- jquery CDN -->
+    <script src="https://code.jquery.com/jquery-3.4.1.js"
+        integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU=" crossorigin="anonymous"></script>
+    <script>
+        // Function load script
+        // -----------------------------------------------
+        var loadExternalScript = function (path) {
+            var result = $.Deferred(),
+                script = document.createElement("script");
+
+            script.async = "async";
+            script.type = "text/javascript";
+            script.src = path;
+            script.onload = script.onreadystatechange = function (_, isAbort) {
+                if (!script.readyState || /loaded|complete/.test(script.readyState)) {
+                    if (isAbort)
+                        result.reject();
+                    else
+                        result.resolve();
+                }
+            };
+
+            script.onerror = function () {
+                result.reject();
+            };
+
+            $("head")[0].appendChild(script);
+
+            return result.promise();
+        };
+
+
+        //checkout.js is razorpay library for payment gateway
+        var callRazorPayScript = function (itemId, amount, qty, processorId) {
+            var merchangeName = "Teq Stories",
+                img = "https://teqstories.com/assets/Blue.png",
+                name = "Jackson Jegatheesan",
+                description = "Data Science",
+                amount = amount,
+                qty = qty;
+
+            loadExternalScript('https://checkout.razorpay.com/v1/checkout.js').then(function () {
+                var options = {
+                    key: 'rzp_test_ZmBCkbkfAtbmLW',
+                    protocol: 'https',
+                    hostname: 'api.razorpay.com',
+                    amount: amount,
+                    currency: "INR",
+                    name: merchangeName,
+                    description: description,
+                    image: img,
+                    prefill: {
+                        name: name,
+                    },
+                    theme: {
+                        color: '#a1e8ff'
+                    },
+                    handler: function (transaction, response) {
+                        console.log('Transaction id: ' + transaction.razorpay_payment_id);
+                        console.log(response.razorpay_payment_id)
+                    }
+                };
+
+                window.rzpay = new Razorpay(options);
+
+                console.log('Item Id: ', amount);
+                console.log('Amount: ', amount);
+                console.log('Quantity: ', qty);
+                console.log('Processor Id: ', processorId);
+
+                rzpay.open();
+            });
+        }
+
+
+        var $payBundle = $('.js-pay-bundle');
+
+        $payBundle.on('click', function () {
+            var itemId = $(this).data('itemid'),
+                amount = $(this).data('amount'),
+                processorid = $(this).data('processorid'),
+                qty = $(this).data('qty');
+            //ammount in paise
+            callRazorPayScript(itemId, amount, processorid, qty);
+        });
+    </script>
+</body>
+
+</html>
